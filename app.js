@@ -411,6 +411,7 @@
     const modal = document.getElementById('word-modal');
     if (!modal) return null;
     const close = () => {
+      stopSpeaking();
       modal.hidden = true;
       document.body.style.overflow = '';
       activeModalWord = null;
@@ -423,6 +424,12 @@
     });
     document.getElementById('modal-slow-speak')?.addEventListener('click', event => {
       if (activeModalWord) speak(activeModalWord.word, event.currentTarget, 0.58);
+    });
+    document.getElementById('modal-example-speak')?.addEventListener('click', event => {
+      if (activeModalWord) speak(activeModalWord.example, event.currentTarget);
+    });
+    document.getElementById('modal-example-slow-speak')?.addEventListener('click', event => {
+      if (activeModalWord) speak(activeModalWord.example, event.currentTarget, 0.58);
     });
     document.getElementById('modal-favorite')?.addEventListener('click', event => {
       if (!activeModalWord) return;

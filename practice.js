@@ -134,8 +134,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     answers.push({ id: word.id, word: word.word, meaning: word.meaning, correct, given, status: learning.after });
     const feedback = document.getElementById('answer-feedback');
     feedback.className = `answer-feedback ${correct ? 'correct' : 'wrong'}`;
-    feedback.innerHTML = `<strong>${correct ? `答对了！${app.escapeHtml(word.word)} 是“${app.escapeHtml(word.meaning)}”` : `正确答案：${app.escapeHtml(word.word)} · ${app.escapeHtml(word.meaning)}`}</strong><span>${app.escapeHtml(word.example)}</span><small>${app.escapeHtml(word.exampleTranslation)}</small>`;
+    feedback.innerHTML = `<strong>${correct ? `答对了！${app.escapeHtml(word.word)} 是“${app.escapeHtml(word.meaning)}”` : `正确答案：${app.escapeHtml(word.word)} · ${app.escapeHtml(word.meaning)}`}</strong><span>${app.escapeHtml(word.example)}</span><small>${app.escapeHtml(word.exampleTranslation)}</small><div class="feedback-audio-actions"><button class="example-audio-button" id="feedback-example-speak" type="button" aria-label="朗读英文例句">▶ 朗读例句</button><button class="example-audio-button" id="feedback-example-slow-speak" type="button" aria-label="慢速朗读英文例句">慢速</button></div>`;
     feedback.hidden = false;
+    document.getElementById('feedback-example-speak').addEventListener('click', event => app.speak(word.example, event.currentTarget));
+    document.getElementById('feedback-example-slow-speak').addEventListener('click', event => app.speak(word.example, event.currentTarget, 0.58));
     const next = document.getElementById('next-question');
     next.textContent = index === questions.length - 1 ? '查看结果 →' : '下一题 →';
     next.hidden = false;
