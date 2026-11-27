@@ -79,4 +79,4 @@ http://localhost:8000
 
 ## 兼容性说明
 
-发音使用浏览器内置 Web Speech API。不同系统的英语语音音色可能略有差异；建议使用最新版 Chrome、Edge 或 Safari。
+发音优先使用 HTTPS 在线英语音频，并在网络音频不可用时自动切换到浏览器 Web Speech API。播放由用户点击触发，兼容微信内置浏览器、手机 Safari、Chrome、Edge 和常见安卓浏览器；手机需要开启媒体音量并保持联网。

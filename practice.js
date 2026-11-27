@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function exitPractice() {
-    speechSynthesis?.cancel();
+    app.stopSpeaking();
     document.getElementById('quiz-shell').hidden = true;
     document.getElementById('practice-modes').hidden = false;
     document.getElementById('practice-setup').hidden = false;
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const play = () => app.speak(word.word, document.getElementById('play-question'));
     document.getElementById('play-question').addEventListener('click', play);
     area.querySelectorAll('.answer-choice').forEach(button => button.addEventListener('click', () => gradeChoice(button, word)));
-    setTimeout(play, 250);
+    play();
   }
 
   function renderSpell(area, word) {

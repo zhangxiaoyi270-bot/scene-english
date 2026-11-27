@@ -22,6 +22,11 @@
   let hotspotsPromise;
   let phrasesPromise;
   let activeModalWord = null;
+  let pronunciationAudio = null;
+  let activeUtterance = null;
+  let activeSpeakButton = null;
+  let speechRequestId = 0;
+  let englishVoices = [];
 
   function defaultProgress() {
     return { favorites: [], mastered: [], viewed: {}, review: [], practiceResults: [], wordStats: {}, version: 2 };
@@ -244,21 +249,117 @@
     return `<span class="emoji-visual" aria-hidden="true">${word?.image || ''}</span>`;
   }
 
-  function speak(text, button, rate = 0.82) {
-    if (!('speechSynthesis' in window)) {
-      showToast('当前浏览器不支持语音播放');
+  function refreshEnglishVoices() {
+    if (!('speechSynthesis' in window)) return;
+    englishVoices = window.speechSynthesis.getVoices().filter(voice => /^en[-_]/i.test(voice.lang));
+  }
+
+  function getPronunciationAudio() {
+    if (pronunciationAudio) return pronunciationAudio;
+    pronunciationAudio = document.createElement('audio');
+    pronunciationAudio.preload = 'none';
+    pronunciationAudio.setAttribute('playsinline', '');
+    pronunciationAudio.setAttribute('webkit-playsinline', '');
+    pronunciationAudio.hidden = true;
+    document.body.appendChild(pronunciationAudio);
+    return pronunciationAudio;
+  }
+
+  function setSpeakingButton(button) {
+    if (activeSpeakButton && activeSpeakButton !== button) activeSpeakButton.classList.remove('speaking');
+    activeSpeakButton = button || null;
+    activeSpeakButton?.classList.add('speaking');
+  }
+
+  function clearSpeakingButton(button = activeSpeakButton) {
+    button?.classList.remove('speaking');
+    if (activeSpeakButton === button) activeSpeakButton = null;
+  }
+
+  function stopSpeaking() {
+    speechRequestId += 1;
+    if (pronunciationAudio) {
+      pronunciationAudio.pause();
+      pronunciationAudio.removeAttribute('src');
+      pronunciationAudio.load();
+    }
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    activeUtterance = null;
+    clearSpeakingButton();
+  }
+
+  function speakWithSystem(text, button, rate, requestId) {
+    if (requestId !== speechRequestId) return;
+    if (!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) {
+      clearSpeakingButton(button);
+      showToast('发音服务暂时不可用，请检查网络后重试');
       return;
     }
-    speechSynthesis.cancel();
+
+    refreshEnglishVoices();
+    const synth = window.speechSynthesis;
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-US';
+    const preferredVoice = englishVoices.find(voice => /^en-US$/i.test(voice.lang)) || englishVoices[0];
+    utterance.lang = preferredVoice?.lang || 'en-US';
+    if (preferredVoice) utterance.voice = preferredVoice;
     utterance.rate = rate;
     utterance.pitch = 1;
-    if (button) {
-      button.classList.add('speaking');
-      utterance.onend = utterance.onerror = () => button.classList.remove('speaking');
+    utterance.volume = 1;
+    utterance.onstart = () => setSpeakingButton(button);
+    utterance.onend = () => {
+      if (activeUtterance === utterance) activeUtterance = null;
+      clearSpeakingButton(button);
+    };
+    utterance.onerror = event => {
+      if (activeUtterance === utterance) activeUtterance = null;
+      clearSpeakingButton(button);
+      if (!['canceled', 'interrupted'].includes(event.error)) showToast('没有听到声音？请调高媒体音量后再试');
+    };
+    activeUtterance = utterance;
+    try {
+      synth.cancel();
+      synth.resume();
+      synth.speak(utterance);
+    } catch (_) {
+      clearSpeakingButton(button);
+      showToast('当前浏览器无法播放发音，请用系统浏览器打开');
     }
-    speechSynthesis.speak(utterance);
+  }
+
+  function pronunciationUrl(text) {
+    return `https://dict.youdao.com/dictvoice?type=2&audio=${encodeURIComponent(text)}`;
+  }
+
+  function speak(text, button, rate = 0.82) {
+    const cleanText = String(text || '').trim();
+    if (!cleanText) return;
+
+    const requestId = speechRequestId + 1;
+    stopSpeaking();
+    speechRequestId = requestId;
+    setSpeakingButton(button);
+
+    const audio = getPronunciationAudio();
+    let fallbackStarted = false;
+    const fallback = () => {
+      if (fallbackStarted || requestId !== speechRequestId) return;
+      fallbackStarted = true;
+      audio.onerror = null;
+      audio.onended = null;
+      audio.pause();
+      speakWithSystem(cleanText, button, rate, requestId);
+    };
+
+    audio.onerror = fallback;
+    audio.onended = () => {
+      if (requestId === speechRequestId) clearSpeakingButton(button);
+    };
+    audio.src = pronunciationUrl(cleanText);
+    audio.playbackRate = rate < 0.7 ? 0.72 : 1;
+    audio.defaultPlaybackRate = audio.playbackRate;
+    audio.currentTime = 0;
+    const playPromise = audio.play();
+    if (playPromise?.catch) playPromise.catch(fallback);
   }
 
   function showToast(message) {
@@ -401,7 +502,7 @@
         phraseBox.querySelectorAll('[data-phrase]').forEach(button => button.addEventListener('click', () => speak(button.dataset.phrase, button)));
       }).catch(() => { phraseBox.innerHTML = '<small>短语数据暂时无法加载</small>'; });
     }
-    if (options.autoSpeak) setTimeout(() => speak(word.word, document.getElementById('modal-speak')), 180);
+    if (options.autoSpeak) speak(word.word, document.getElementById('modal-speak'));
   }
 
   function todayViewedCount() {
@@ -412,6 +513,8 @@
   document.addEventListener('DOMContentLoaded', () => {
     setupNavigation();
     updateHeaderProgress();
+    refreshEnglishVoices();
+    if ('speechSynthesis' in window) window.speechSynthesis.addEventListener?.('voiceschanged', refreshEnglishVoices);
   });
 
   window.SceneEnglish = {
@@ -439,6 +542,7 @@
     loadPhrases,
     wordVisualHtml,
     speak,
+    stopSpeaking,
     showToast,
     escapeHtml,
     shuffled,
