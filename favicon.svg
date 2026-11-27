@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="18" fill="#4f9b73"/>
+  <path d="M18 17h28v6H18zm3 11h22v5H21zm3 10h16v5H24z" fill="#fff" opacity=".22"/>
+  <text x="32" y="43" text-anchor="middle" font-size="30" font-family="sans-serif" font-weight="700" fill="#fff">看</text>
+</svg>

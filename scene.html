@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>场景学习 · 看图学英语</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=3.2">
+</head>
+<body data-page="scene">
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">看</span><span><strong>看图学英语</strong><small>Scene English</small></span></a>
+    <button class="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">☰</button>
+    <nav class="main-nav"><a href="index.html">首页</a><a class="active" href="scene.html?scene=bedroom">场景学习</a><a href="practice.html">练习</a><a href="review.html">今日复习</a><a href="vocabulary.html">我的词汇</a></nav>
+    <a class="header-progress" href="vocabulary.html"><span class="mini-ring" id="header-ring"><b>0%</b></span><span>学习进度</span></a>
+  </header>
+
+  <main class="scene-page">
+    <section class="scene-toolbar section-shell">
+      <div>
+        <a class="back-link" href="index.html">← 返回首页</a>
+        <span class="eyebrow">沉浸式场景学习</span>
+        <h1><span id="scene-cn">卧室</span> <small id="scene-en">Bedroom</small></h1>
+        <p id="scene-description">点击画面中的圆点，认识身边的英语单词。</p>
+      </div>
+      <div class="scene-controls">
+        <label class="scene-select-label">切换场景
+          <select id="scene-select" aria-label="切换场景">
+            <option value="bedroom">卧室 Bedroom</option>
+            <option value="kitchen">厨房 Kitchen</option>
+            <option value="supermarket">超市 Supermarket</option>
+            <option value="livingroom">客厅 Living Room</option>
+          </select>
+        </label>
+        <div class="scene-progress"><span><b id="scene-mastered">0</b> / <b id="scene-total">35</b> 已掌握</span><div><i id="scene-progress-bar"></i></div></div>
+      </div>
+    </section>
+
+    <section class="scene-learning-layout section-shell">
+      <div class="scene-workspace">
+        <div class="scene-hint"><span>✦</span> 点击发光圆点发现单词 <button class="sequence-start" id="start-sequence" type="button">▶ 连续学习</button><button id="toggle-hotspots" type="button">隐藏热点</button></div>
+        <div class="scene-canvas" id="scene-canvas">
+          <img id="scene-image" src="bedroom.png" alt="卧室生活场景">
+          <div id="hotspot-layer" class="hotspot-layer"></div>
+          <div class="canvas-loading" id="canvas-loading">正在布置场景…</div>
+        </div>
+        <div class="scene-pagination" id="scene-tabs" aria-label="场景快捷切换"></div>
+      </div>
+      <aside class="word-sidebar">
+        <div class="sidebar-head"><div><span>本场景词汇</span><strong id="word-count-label">35 个</strong></div><button id="sidebar-filter" type="button" aria-pressed="false">只看未掌握</button></div>
+        <div class="word-list" id="scene-word-list"></div>
+      </aside>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="word-modal" hidden>
+    <article class="word-modal" role="dialog" aria-modal="true" aria-labelledby="modal-word">
+      <button class="modal-close" type="button" aria-label="关闭">×</button>
+      <div class="modal-scene-tag" id="modal-scene-tag">Bedroom · 卧室</div>
+      <div class="modal-main">
+        <div class="modal-visual" id="modal-visual" aria-hidden="true">🛏️</div>
+        <div class="modal-copy">
+          <div class="word-heading"><div><h2 id="modal-word">bed</h2><p id="modal-phonetic">/bed/</p></div><div class="speak-actions"><button class="speak-button" id="modal-speak" type="button" aria-label="播放发音">▶ <span>听发音</span></button><button class="slow-speak-button" id="modal-slow-speak" type="button">慢速</button></div></div>
+          <strong class="word-meaning" id="modal-meaning">床</strong>
+          <div class="word-status-row"><span class="word-status status-new" id="modal-status">未学习</span><small id="modal-review-time">点击发音并跟读，开始学习</small></div>
+          <div class="example-box"><span>例句</span><p id="modal-example">This is my bed.</p><small id="modal-translation">这是我的床。</small></div>
+          <div class="phrase-box" id="modal-phrases"><span>常用搭配</span><small>正在加载常用搭配…</small></div>
+          <div class="word-actions"><button class="button button-ghost favorite-button" id="modal-favorite" type="button">☆ 收藏</button><button class="button button-primary master-button" id="modal-master" type="button">✓ 标记为已掌握</button></div>
+        </div>
+      </div>
+      <div class="sequence-controls" id="sequence-controls" hidden><button id="sequence-prev" type="button">← 上一个</button><span><b id="sequence-label">1 / 35</b> · 连续学习</span><button id="sequence-next" type="button">下一个 →</button></div>
+      <div class="modal-tip">学习建议：听两遍发音，再跟读一遍。</div>
+    </article>
+  </div>
+
+  <footer class="site-footer"><span>看图学英语 · Scene English</span><span>点击物品，在场景中记住它</span></footer>
+  <script src="app.js?v=3.1"></script>
+  <script src="scene.js?v=3.1"></script>
+</body>
+</html>

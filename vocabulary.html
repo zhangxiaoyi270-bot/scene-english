@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的词汇 · 看图学英语</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=3.2">
+</head>
+<body data-page="vocabulary">
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">看</span><span><strong>看图学英语</strong><small>Scene English</small></span></a>
+    <button class="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">☰</button>
+    <nav class="main-nav"><a href="index.html">首页</a><a href="scene.html?scene=bedroom">场景学习</a><a href="practice.html">练习</a><a href="review.html">今日复习</a><a class="active" href="vocabulary.html">我的词汇</a></nav>
+    <a class="header-progress" href="vocabulary.html"><span class="mini-ring" id="header-ring"><b>0%</b></span><span>学习进度</span></a>
+  </header>
+  <main class="vocab-page section-shell">
+    <section class="page-intro vocab-intro">
+      <div><span class="eyebrow">我的词汇库</span><h1>把学过的词，变成会用的词。</h1><p>收藏重点词汇，及时复习错题，清楚看到自己的学习进度。</p></div>
+      <div class="overall-progress-card"><div class="large-ring" id="overall-ring"><strong>0%</strong></div><div><span>学习总进度</span><strong><b id="overall-mastered">0</b> / 140</strong><small>已掌握词汇</small></div></div>
+    </section>
+    <section class="vocab-stats">
+      <button class="vocab-stat active" data-filter="all" type="button"><span>全部学习过</span><strong id="stat-viewed">0</strong><small>个单词</small></button>
+      <button class="vocab-stat" data-filter="favorite" type="button"><span>已收藏</span><strong id="stat-favorite">0</strong><small>个单词</small></button>
+      <button class="vocab-stat" data-filter="learning" type="button"><span>学习中</span><strong id="stat-learning">0</strong><small>个单词</small></button>
+      <button class="vocab-stat" data-filter="review" type="button"><span>待复习</span><strong id="stat-review">0</strong><small>个单词</small></button>
+      <button class="vocab-stat" data-filter="mastered" type="button"><span>已掌握</span><strong id="stat-mastered">0</strong><small>个单词</small></button>
+      <button class="vocab-stat" data-filter="mistakes" type="button"><span>错题本</span><strong id="stat-mistakes">0</strong><small>个单词</small></button>
+    </section>
+    <section class="vocab-library">
+      <div class="library-toolbar">
+        <div class="filter-tabs" id="filter-tabs"><button class="active" data-filter="all" type="button">全部</button><button data-filter="favorite" type="button">已收藏</button><button data-filter="learning" type="button">学习中</button><button data-filter="review" type="button">待复习</button><button data-filter="mastered" type="button">已掌握</button><button data-filter="mistakes" type="button">错题本</button></div>
+        <div class="library-actions"><label class="search-box">⌕ <input id="word-search" type="search" placeholder="搜索英文或中文"></label><select id="vocab-scene"><option value="all">全部场景</option><option value="bedroom">卧室</option><option value="kitchen">厨房</option><option value="supermarket">超市</option><option value="livingroom">客厅</option></select></div>
+      </div>
+      <div class="vocab-grid" id="vocab-grid"></div>
+      <div class="empty-state" id="empty-state" hidden><span>⌁</span><h3>这里暂时没有单词</h3><p>先去场景里点击几个物品吧。</p><a class="button button-primary" href="scene.html?scene=bedroom">去学习</a></div>
+    </section>
+    <section class="data-manager"><div><span class="eyebrow">学习数据</span><h2>备份或管理本机学习记录</h2><p>导出的 JSON 文件可以用于换浏览器或换电脑后恢复进度。</p></div><div class="data-manager-actions"><button class="button button-ghost" id="export-progress" type="button">导出进度</button><button class="button button-ghost" id="import-progress" type="button">导入进度</button><button class="button danger-button" id="reset-progress" type="button">重置进度</button><input id="progress-file" type="file" accept="application/json,.json" hidden></div></section>
+  </main>
+
+  <div class="modal-backdrop" id="word-modal" hidden>
+    <article class="word-modal" role="dialog" aria-modal="true" aria-labelledby="modal-word">
+      <button class="modal-close" type="button" aria-label="关闭">×</button>
+      <div class="modal-scene-tag" id="modal-scene-tag"></div>
+      <div class="modal-main"><div class="modal-visual" id="modal-visual"></div><div class="modal-copy"><div class="word-heading"><div><h2 id="modal-word"></h2><p id="modal-phonetic"></p></div><div class="speak-actions"><button class="speak-button" id="modal-speak" type="button">▶ <span>听发音</span></button><button class="slow-speak-button" id="modal-slow-speak" type="button">慢速</button></div></div><strong class="word-meaning" id="modal-meaning"></strong><div class="word-status-row"><span class="word-status status-new" id="modal-status">未学习</span><small id="modal-review-time">点击发音并跟读，开始学习</small></div><div class="example-box"><span>例句</span><p id="modal-example"></p><small id="modal-translation"></small></div><div class="phrase-box" id="modal-phrases"><span>常用搭配</span><small>正在加载常用搭配…</small></div><div class="word-actions"><button class="button button-ghost favorite-button" id="modal-favorite" type="button">☆ 收藏</button><button class="button button-primary master-button" id="modal-master" type="button">✓ 标记为已掌握</button></div></div></div>
+    </article>
+  </div>
+  <footer class="site-footer"><span>看图学英语 · Scene English</span><span>收藏、复习、持续进步</span></footer>
+  <script src="app.js?v=3.1"></script>
+  <script src="vocabulary.js?v=3.1"></script>
+</body>
+</html>

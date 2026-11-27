@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习 · 看图学英语</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=3.2">
+</head>
+<body data-page="practice">
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">看</span><span><strong>看图学英语</strong><small>Scene English</small></span></a>
+    <button class="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">☰</button>
+    <nav class="main-nav"><a href="index.html">首页</a><a href="scene.html?scene=bedroom">场景学习</a><a class="active" href="practice.html">练习</a><a href="review.html">今日复习</a><a href="vocabulary.html">我的词汇</a></nav>
+    <a class="header-progress" href="vocabulary.html"><span class="mini-ring" id="header-ring"><b>0%</b></span><span>学习进度</span></a>
+  </header>
+  <main class="practice-page section-shell">
+    <section class="page-intro">
+      <span class="eyebrow">练一练，记得更牢</span>
+      <h1>选择一种练习方式</h1>
+      <p>每轮最多 10 题。答题结果会自动安排 1、3、7、15 天间隔复习。</p>
+    </section>
+    <section class="practice-modes" id="practice-modes">
+      <button class="mode-card active" data-mode="listen" type="button"><span class="mode-icon mint">♪</span><strong>听音选图</strong><small>听发音，选出正确物品</small></button>
+      <button class="mode-card" data-mode="spell" type="button"><span class="mode-icon blue">Aa</span><strong>看图拼单词</strong><small>看物品，输入英文单词</small></button>
+      <button class="mode-card" data-mode="choice" type="button"><span class="mode-icon orange">✓</span><strong>单词选择题</strong><small>选择正确的中文释义</small></button>
+    </section>
+    <section class="practice-setup" id="practice-setup">
+      <div><label for="practice-scene">练习范围</label><select id="practice-scene"><option value="all">全部场景 · 140 词</option><option value="bedroom">卧室 · 35 词</option><option value="kitchen">厨房 · 35 词</option><option value="supermarket">超市 · 40 词</option><option value="livingroom">客厅 · 30 词</option><option value="review">今天待复习</option><option value="mistakes">错题本</option></select></div>
+      <button class="button button-primary" id="start-practice" type="button">开始练习 →</button>
+    </section>
+
+    <section class="quiz-shell" id="quiz-shell" hidden>
+      <div class="quiz-top"><button class="text-button" id="exit-quiz" type="button">× 退出</button><div class="quiz-progress"><i id="quiz-progress-bar"></i></div><span><b id="question-number">1</b> / <b id="quiz-total">10</b></span></div>
+      <div id="question-area" class="question-area"></div>
+      <div class="answer-feedback" id="answer-feedback" hidden></div>
+      <button class="button button-primary next-button" id="next-question" type="button" hidden>下一题 →</button>
+    </section>
+
+    <section class="result-shell" id="result-shell" hidden>
+      <div class="result-badge" id="result-badge">做得好！</div>
+      <div class="score-ring" id="score-ring"><strong id="score-percent">0%</strong><span>正确率</span></div>
+      <h2 id="result-title">本轮练习完成</h2>
+      <p id="result-summary">答对 0 题，共 10 题</p>
+      <div class="result-breakdown" id="result-breakdown"></div>
+      <div class="result-actions"><button class="button button-primary" id="retry-practice" type="button">再练一轮</button><a class="button button-ghost" href="vocabulary.html?filter=review">复习错题</a></div>
+    </section>
+  </main>
+  <footer class="site-footer"><span>看图学英语 · Scene English</span><span>即时反馈，让每次练习都有收获</span></footer>
+  <script src="app.js?v=3.1"></script>
+  <script src="practice.js?v=3.1"></script>
+</body>
+</html>

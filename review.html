@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="看图学英语今日复习：按照记忆节奏巩固学过的单词。">
+  <title>今日复习 · 看图学英语</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=3.2">
+</head>
+<body data-page="review">
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">看</span><span><strong>看图学英语</strong><small>Scene English</small></span></a>
+    <button class="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">☰</button>
+    <nav class="main-nav"><a href="index.html">首页</a><a href="scene.html?scene=bedroom">场景学习</a><a href="practice.html">练习</a><a class="active" href="review.html">今日复习</a><a href="vocabulary.html">我的词汇</a></nav>
+    <a class="header-progress" href="vocabulary.html"><span class="mini-ring" id="header-ring"><b>0%</b></span><span>学习进度</span></a>
+  </header>
+
+  <main class="review-page section-shell">
+    <section class="review-hero">
+      <div><span class="eyebrow">间隔复习计划</span><h1>今天要复习 <em id="due-count">0</em> 个单词</h1><p id="review-message">正在整理你的复习计划…</p><div class="review-actions"><a class="button button-primary" id="start-review" href="practice.html?range=review">开始今日复习 →</a><a class="button button-ghost" href="scene.html?scene=livingroom">学习新场景</a></div></div>
+      <div class="review-time-card"><span>预计用时</span><strong><b id="review-minutes">0</b> 分钟</strong><small>根据待复习数量估算</small><div class="review-orbit"><i></i><i></i><i></i><b>↻</b></div></div>
+    </section>
+
+    <section class="review-stats">
+      <article><span>今天到期</span><strong id="review-stat-due">0</strong><small>建议优先完成</small></article>
+      <article><span>学习中</span><strong id="review-stat-learning">0</strong><small>正在形成记忆</small></article>
+      <article><span>错题本</span><strong id="review-stat-mistakes">0</strong><small>需要重点关注</small></article>
+      <article><span>已掌握</span><strong id="review-stat-mastered">0</strong><small>完成四个阶段</small></article>
+    </section>
+
+    <section class="review-layout">
+      <article class="review-list-card">
+        <div class="review-card-head"><div><span class="eyebrow">今日清单</span><h2>需要巩固的单词</h2></div><a href="vocabulary.html?filter=review">查看全部 →</a></div>
+        <div class="review-word-list" id="review-word-list"></div>
+        <div class="empty-state compact-empty" id="review-empty" hidden><span>✓</span><h3>今天的复习完成了</h3><p>可以学习几个新词，明天再回来看看。</p></div>
+      </article>
+      <aside class="review-schedule-card">
+        <span class="eyebrow">接下来</span><h2>复习日程</h2>
+        <div class="schedule-row"><span><i class="today"></i>今天</span><strong id="schedule-today">0 个</strong></div>
+        <div class="schedule-row"><span><i class="tomorrow"></i>未来 3 天</span><strong id="schedule-three">0 个</strong></div>
+        <div class="schedule-row"><span><i class="week"></i>未来 7 天</span><strong id="schedule-seven">0 个</strong></div>
+        <div class="memory-guide"><strong>记忆节奏</strong><p>答对后会在 1、3、7、15 天后再次出现；答错则回到今天继续巩固。</p></div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-footer"><span>看图学英语 · Scene English</span><span>按时复习，比一次背很多更有效</span></footer>
+  <script src="app.js?v=3.1"></script>
+  <script src="review.js?v=3.1"></script>
+</body>
+</html>

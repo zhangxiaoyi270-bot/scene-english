@@ -1,0 +1,37 @@
+[
+  {"id":"bedroom-make-bed","scene":"bedroom","phrase":"make the bed","meaning":"整理床铺","wordIds":["bedroom-bed"]},
+  {"id":"bedroom-turn-on-lamp","scene":"bedroom","phrase":"turn on the lamp","meaning":"打开台灯","wordIds":["bedroom-lamp"]},
+  {"id":"bedroom-open-curtains","scene":"bedroom","phrase":"open the curtains","meaning":"拉开窗帘","wordIds":["bedroom-curtain"]},
+  {"id":"bedroom-close-door","scene":"bedroom","phrase":"close the door","meaning":"关门","wordIds":["bedroom-door"]},
+  {"id":"bedroom-put-on-slippers","scene":"bedroom","phrase":"put on the slippers","meaning":"穿上拖鞋","wordIds":["bedroom-slippers"]},
+  {"id":"bedroom-set-alarm","scene":"bedroom","phrase":"set the alarm clock","meaning":"设置闹钟","wordIds":["bedroom-alarm-clock"]},
+  {"id":"bedroom-hang-up-shirt","scene":"bedroom","phrase":"hang up the shirt","meaning":"把衬衫挂起来","wordIds":["bedroom-hanger","bedroom-wardrobe"]},
+  {"id":"bedroom-sit-at-desk","scene":"bedroom","phrase":"sit at the desk","meaning":"坐在书桌前","wordIds":["bedroom-desk","bedroom-chair"]},
+
+  {"id":"kitchen-wash-dishes","scene":"kitchen","phrase":"wash the dishes","meaning":"洗碗","wordIds":["kitchen-sink","kitchen-plate"]},
+  {"id":"kitchen-open-fridge","scene":"kitchen","phrase":"open the refrigerator","meaning":"打开冰箱","wordIds":["kitchen-refrigerator"]},
+  {"id":"kitchen-boil-water","scene":"kitchen","phrase":"boil some water","meaning":"烧一些水","wordIds":["kitchen-kettle"]},
+  {"id":"kitchen-cut-vegetables","scene":"kitchen","phrase":"cut the vegetables","meaning":"切蔬菜","wordIds":["kitchen-knife","kitchen-cutting-board"]},
+  {"id":"kitchen-pour-cup","scene":"kitchen","phrase":"pour tea into the cup","meaning":"把茶倒进杯子","wordIds":["kitchen-cup"]},
+  {"id":"kitchen-heat-microwave","scene":"kitchen","phrase":"heat it in the microwave","meaning":"用微波炉加热","wordIds":["kitchen-microwave"]},
+  {"id":"kitchen-fry-pan","scene":"kitchen","phrase":"fry it in a pan","meaning":"用平底锅煎","wordIds":["kitchen-frying-pan"]},
+  {"id":"kitchen-set-table","scene":"kitchen","phrase":"set the table","meaning":"摆餐桌","wordIds":["kitchen-table","kitchen-plate"]},
+
+  {"id":"supermarket-shopping-cart","scene":"supermarket","phrase":"push the shopping cart","meaning":"推购物车","wordIds":["supermarket-cart"]},
+  {"id":"supermarket-pick-apples","scene":"supermarket","phrase":"pick some apples","meaning":"挑选一些苹果","wordIds":["supermarket-apple"]},
+  {"id":"supermarket-buy-bread","scene":"supermarket","phrase":"buy a loaf of bread","meaning":"买一条面包","wordIds":["supermarket-bread"]},
+  {"id":"supermarket-check-price","scene":"supermarket","phrase":"check the price","meaning":"查看价格","wordIds":["supermarket-price-tag"]},
+  {"id":"supermarket-pay-card","scene":"supermarket","phrase":"pay by card","meaning":"刷卡付款","wordIds":["supermarket-checkout"]},
+  {"id":"supermarket-wait-line","scene":"supermarket","phrase":"wait in line","meaning":"排队等候","wordIds":["supermarket-checkout"]},
+  {"id":"supermarket-on-sale","scene":"supermarket","phrase":"be on sale","meaning":"正在促销","wordIds":["supermarket-price-tag"]},
+  {"id":"supermarket-bottle-water","scene":"supermarket","phrase":"a bottle of water","meaning":"一瓶水","wordIds":["supermarket-water"]},
+
+  {"id":"livingroom-sit-sofa","scene":"livingroom","phrase":"sit on the sofa","meaning":"坐在沙发上","wordIds":["livingroom-sofa"]},
+  {"id":"livingroom-turn-tv","scene":"livingroom","phrase":"turn on the television","meaning":"打开电视","wordIds":["livingroom-television"]},
+  {"id":"livingroom-use-remote","scene":"livingroom","phrase":"use the remote control","meaning":"使用遥控器","wordIds":["livingroom-remote-control"]},
+  {"id":"livingroom-close-curtains","scene":"livingroom","phrase":"close the curtains","meaning":"拉上窗帘","wordIds":["livingroom-curtain"]},
+  {"id":"livingroom-read-book","scene":"livingroom","phrase":"read a book","meaning":"看书","wordIds":["livingroom-book"]},
+  {"id":"livingroom-water-plant","scene":"livingroom","phrase":"water the plant","meaning":"给植物浇水","wordIds":["livingroom-plant"]},
+  {"id":"livingroom-turn-lamp","scene":"livingroom","phrase":"turn on the floor lamp","meaning":"打开落地灯","wordIds":["livingroom-floor-lamp"]},
+  {"id":"livingroom-put-cushion","scene":"livingroom","phrase":"put the cushion on the sofa","meaning":"把靠垫放在沙发上","wordIds":["livingroom-cushion","livingroom-sofa"]}
+]
